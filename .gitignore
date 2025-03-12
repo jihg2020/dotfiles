@@ -1,0 +1,7 @@
+#fish
+/fish/conf.d/
+/fish/fish_variables
+# =====  =====
+# MacOS
+.DS_Store
+._*
