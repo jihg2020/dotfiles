@@ -1,0 +1,21 @@
+
+
+add_newline = false
+
+right_format = """
+$username
+$hostname
+"""
+
+[directory]
+truncation_length = 0
+truncate_to_repo= false
+
+[username]
+format = '[$user]($style) '
+
+[hostname]
+format = '[$ssh_symbol$hostname]($style) '
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
