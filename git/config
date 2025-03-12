@@ -1,0 +1,23 @@
+[includeIf "gitdir/i:/**"]
+  path = ~/.config/git/person.git
+
+[includeIf "gitdir/i:**/workdir/**"]
+  path = ~/.config/work.git
+
+[init]
+	defaultBranch = main
+[core]
+	quotepath = false
+	pager = delta
+[alias]
+	br = branch
+	ci = commit
+	co = checkout
+	st = status
+	unstage = reset HEAD --
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+  navigate = true   # 使用n 和N 在差异部分之间移动
+	line-numbers = true
+	# side-by-side = true
