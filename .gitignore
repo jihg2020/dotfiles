@@ -1,6 +1,9 @@
 #fish
 /fish/conf.d/
 /fish/fish_variables
+
+# yazi
+/yazi/plugins/
 # =====  =====
 # MacOS
 .DS_Store

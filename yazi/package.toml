@@ -1,17 +1,17 @@
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "f6939fb"
-hash = "8ae899541dc7accb680ee4fd382a09c"
+rev = "6c639b4"
+hash = "5614c46d5de76623c283d415bfac8025"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "beb586a"
-hash = "771f18427fb75fb19990ce602bb322f4"
+rev = "cb6165b"
+hash = "ee5fa7e64db72d6b10c2315de97c9cc7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "beb586a"
-hash = "aef2b1a805b80cce573bb766f1459d88"
+rev = "cb6165b"
+hash = "7918aab6a71caf31b58411f789195677"
 
 [flavor]
 deps = []
