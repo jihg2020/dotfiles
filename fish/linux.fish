@@ -1,7 +1,9 @@
 
 # starship
-starship init fish | source
-export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+if type -q starship
+  starship init fish | source
+  export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+end
 
 # autojump
   [ -f $(brew --prefix)/share/autojump/autojump.fish ]; and source  $(brew --prefix)/share/autojump/autojump.fish

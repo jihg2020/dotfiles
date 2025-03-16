@@ -4,10 +4,13 @@ if [[ "$(uname -m)" == "arm64" ]]; then
 fi
 
 # starship
-starship init fish | source
+if type -q starship
+  starship init fish | source
+  export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+end
 
 # autojump
-  [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 
-  # Rust
-  source "$HOME/.cargo/env.fish"
+# Rust
+[ -f $HOME/.cargo/env.fish ]; and source "$HOME/.cargo/env.fish"
