@@ -1,3 +1,8 @@
+# Homebrew
+if [[ "$(uname -m)" == "arm64" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # 加载代理配置
 [[ -f $HOME/.config/zsh/proxy.zsh ]] && source $HOME/.config/zsh/proxy.zsh
 
@@ -15,11 +20,6 @@ HISTFILE=$HOME/Library/Caches/zsh/history
 autoload -Uz compinit && compinit
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-
-# Homebrew
-if [[ "$(uname -m)" == "arm64" ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
 
 # Starship
 if command starship -V &> /dev/null; then
