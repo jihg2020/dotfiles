@@ -1,7 +1,7 @@
 # Homebrew
-if [[ "$(uname -m)" == "arm64" ]]; then
+if test "$(uname -m)" = arm64
   eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+end
 
 # starship
 if type -q starship
