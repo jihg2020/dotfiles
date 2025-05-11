@@ -35,6 +35,11 @@ fi
 # autojump  -- installed by homebrew
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
+# zoxide 
+if command zoxide -V &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
 # Rust
 [ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
 
