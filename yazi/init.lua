@@ -1,11 +1,9 @@
--- 
-require("smart-enter"):setup {
-  open_multi = true,
-}
-
--- starship.yazi
+-- starship
 require("starship"):setup({
-  config = "~/.config/starship/starship.toml"
+    config_file = "~/.config/starship/starship.toml", 
 })
 
-require("git"):setup()
+-- smart-enter
+require("smart-enter"):setup {
+	open_multi = true,
+}
