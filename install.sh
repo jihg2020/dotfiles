@@ -33,12 +33,14 @@ done
 create_alias() {
 
 	if [ $(command -v nvim) ]; then
-		sudo ln -s $(command -v nvim) $(dirname "$(command -v nvim)")/nv
+	 # echo "neovim is installed, create alias nv for neovim."
+		 ln -sf $(command -v nvim) $(dirname "$(command -v nvim)")/nv
 	fi
 }
-# 
+
+# 在用户家目录中创建.zshrc文件 
 create_zshrc() {
-  cat > $HOME/.zshrc << EOF
+  tee "$HOME/.zshrc" > /dev/null << 'EOF'
 # set language environment
 export LANG=en_US.UTF-8
 
