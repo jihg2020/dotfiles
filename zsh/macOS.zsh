@@ -12,10 +12,6 @@ fi
 # plugins manager
 [[ -f $HOME/.config/zsh/plugins.zsh ]] && source $HOME/.config/zsh/plugins.zsh
 
-# History of Zsh in cache dircetory
-[ -d "${HOME}/Library/Caches/zsh" ] || mkdir $HOME/Library/Caches/zsh
-HISTFILE=$HOME/Library/Caches/zsh/history
-
 # Use modern completion system
 autoload -Uz compinit && compinit
 zstyle ':completion:*' list-colors ''

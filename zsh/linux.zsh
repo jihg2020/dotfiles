@@ -7,10 +7,6 @@
 # plugins manager
 [[ -f $HOME/.config/zsh/plugins.zsh ]] && source $HOME/.config/zsh/plugins.zsh
 
-# History of Zsh in cache dircetory
-[ -d "${HOME}/.cache/zsh" ] || mkdir $HOME/Library/Caches/zsh
-HISTFILE=$HOME/.cache/zsh/history
-#
 # Use modern completion system
 autoload -Uz compinit && compinit
 zstyle ':completion:*' list-colors ''
@@ -29,6 +25,11 @@ fi
 
 # autojump  -- installed by homebrew
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# zoxide 
+if command zoxide -V &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
 
 # Rust
 [ -f $HOME/.cargo/env ] && . $HOME/.cargo/env

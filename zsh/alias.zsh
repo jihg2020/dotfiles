@@ -5,6 +5,8 @@ alias cl="clear"
 # lsd
 if command lsd -V &> /dev/null; then
   alias ls="lsd";  alias ll="lsd -l";  alias la="lsd -al"
+else
+  alias ls="ls --color=auto"; alias="ls -l"; alias la="ls -al"
 fi
 
 # lazygit

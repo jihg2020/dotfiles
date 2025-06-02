@@ -22,9 +22,9 @@ fi
 for name in `ls ${CUR_DIR}`; do
   if [[ -d "${CUR_DIR}/${name}" ]]; then
   	if [[ -d ${DST_DIR}/${name} ]]; then
-    		mv $DST_DIR/${name} $DST_DIR/${name}.bak 
+    	mv $DST_DIR/${name} $DST_DIR/${name}.bak 
   	fi
-  	ln -sf ${CUR_DIR}/${name} ${DST_DIR}/${name}
+  	ln -sf ${CUR_DIR}/${name} ${DST_DIR}/
   else
 	continue
   fi
@@ -46,8 +46,18 @@ export LANG=en_US.UTF-8
 
 # 加载环境配置
 if [[ "$(uname)" == "Linux" ]]; then
+  # Save command history
+  [[ -d ${HOME}/.cache/zsh ]] || mkdir ${HOME}/.cache/zsh
+  HISTFILE=${HOME}/.cache/zsh/history
+  # Default prompt
+  PS1="%n@%m: %1~ %# "
+
   [[ -f $HOME/.config/zsh/linux.zsh ]] && source $HOME/.config/zsh/linux.zsh
 elif [[ "$(uname)" == "Darwin" ]]; then
+  # Save command history
+  [[ -d ${HOME}/Library/Caches/zsh ]] || mkdir ${HOME}/Library/Caches/zsh
+  HISTFILE=${HOME}/Library/Caches/zsh/history
+
   [[ -f $HOME/.config/zsh/macOS.zsh ]] && source $HOME/.config/zsh/macOS.zsh
 fi
 EOF
