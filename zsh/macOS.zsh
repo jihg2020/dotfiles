@@ -23,11 +23,6 @@ if command starship -V &> /dev/null; then
   export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 fi
 
-# Neovim
-if command nvim -v &> /dev/null; then
-  export EDITOR="nvim"
-fi
-
 # autojump  -- installed by homebrew
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 

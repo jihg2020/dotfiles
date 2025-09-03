@@ -6,7 +6,13 @@ if type -q starship
 end
 
 # autojump
-  [ -f $(brew --prefix)/share/autojump/autojump.fish ]; and source  $(brew --prefix)/share/autojump/autojump.fish
+[ -f $(brew --prefix)/share/autojump/autojump.fish ]; and source  $(brew --prefix)/share/autojump/autojump.fish
 
-  # Rust
-  [ -f $HOME/.cargo/env.fish ]; and source "$HOME/.cargo/env.fish"
+# zoxide
+if type -q zoxide
+  zoxide init fish | source
+end
+
+# Rust
+[ -f $HOME/.cargo/env.fish ]; and source "$HOME/.cargo/env.fish"
+

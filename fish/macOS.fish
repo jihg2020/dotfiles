@@ -10,7 +10,7 @@ if type -q starship
 end
 
 # autojump
-[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+[ -f $(brew --prefix)/share/autojump/autojump.fish ]; and source $(brew --prefix)/share/autojump/autojump.fish
 
 # Rust
 [ -f $HOME/.cargo/env.fish ]; and source "$HOME/.cargo/env.fish"

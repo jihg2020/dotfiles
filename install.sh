@@ -41,9 +41,6 @@ create_alias() {
 # 在用户家目录中创建.zshrc文件 
 create_zshrc() {
   tee "$HOME/.zshrc" > /dev/null << 'EOF'
-# set language environment
-export LANG=en_US.UTF-8
-
 # 加载环境配置
 if [[ "$(uname)" == "Linux" ]]; then
   # Save command history
