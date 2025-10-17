@@ -43,17 +43,24 @@ create_zshrc() {
   tee "$HOME/.zshrc" > /dev/null << 'EOF'
 # 加载环境配置
 if [[ "$(uname)" == "Linux" ]]; then
-  # Save command history
-  [[ -d ${HOME}/.cache/zsh ]] || mkdir ${HOME}/.cache/zsh
-  HISTFILE=${HOME}/.cache/zsh/history
-  # Default prompt
-  PS1="%n@%m: %1~ %# "
+  # Ensure history directory exists
+  [[ -d "${HOME}/.cache/zsh" ]] || mkdir -p "${HOME}/.cache/zsh"
+  # History file location
+  HISTFILE="${HOME}/.cache/zsh/history"
+  HISTSIZE=100000               # 当前 session 可保存的历史条数
+  SAVEHIST=100000               # 实际写入文件的历史条数
 
   [[ -f $HOME/.config/zsh/linux.zsh ]] && source $HOME/.config/zsh/linux.zsh
+
+  # Default prompt
+  PS1="%n@%m: %1~ %# "
 elif [[ "$(uname)" == "Darwin" ]]; then
-  # Save command history
-  [[ -d ${HOME}/Library/Caches/zsh ]] || mkdir ${HOME}/Library/Caches/zsh
+  # Ensure history directory exists
+  [[ -d ${HOME}/Library/Caches/zsh ]] || mkdir -p ${HOME}/Library/Caches/zsh
+  # History file location
   HISTFILE=${HOME}/Library/Caches/zsh/history
+  HISTSIZE=100000               # 当前 session 可保存的历史条数
+  SAVEHIST=100000               # 实际写入文件的历史条数
 
   [[ -f $HOME/.config/zsh/macOS.zsh ]] && source $HOME/.config/zsh/macOS.zsh
 fi
