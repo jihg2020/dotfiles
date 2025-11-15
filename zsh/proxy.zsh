@@ -3,8 +3,8 @@
 hostip="localhost"
 
 # 监听端口
-port_http=1087
-port_socks=1080
+port_http=7890
+port_socks=7890
 
 # 两种代理方式：一种基于http，一种基于socket5
 PROXY_HTTP="http://${hostip}:${port_http}"

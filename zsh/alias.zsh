@@ -2,18 +2,11 @@
 alias sudo="sudo -E"
 alias cl="clear"
 
-# lsd
-if command lsd -V &> /dev/null; then
-  alias ls="lsd";  alias ll="lsd -l";  alias la="lsd -al"
-else
-  alias ls="ls --color=auto"; alias="ls -l"; alias la="ls -al"
-fi
-
 # lazygit
 alias lg="lazygit"
 
 # yazi
-function y() {
+function yz() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
   yazi "$@" --cwd-file="$tmp"
   if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
