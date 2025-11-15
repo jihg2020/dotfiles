@@ -18,19 +18,21 @@ if [[ ! -d "${DST_DIR}" ]]; then
   unset confirm
 fi
 
-# 遍历当前文件，并在$HOME/.config下建立对应软连接
-for name in `ls ${CUR_DIR}`; do
-  if [[ -d "${CUR_DIR}/${name}" ]]; then
-  	if [[ -d ${DST_DIR}/${name} ]]; then
-    	mv $DST_DIR/${name} $DST_DIR/${name}.bak 
-  	fi
-  	ln -sf ${CUR_DIR}/${name} ${DST_DIR}/
-  else
-	continue
-  fi
-done
+config_alias() {
+  # 遍历当前文件，并在$HOME/.config下建立对应软连接
+  for name in `ls ${CUR_DIR}`; do
+    if [[ -d "${CUR_DIR}/${name}" && "$name" != "script" ]]; then
+      if [[ -d ${DST_DIR}/${name} ]]; then
+        mv $DST_DIR/${name} $DST_DIR/${name}.bak 
+      fi
+      ln -sf ${CUR_DIR}/${name} ${DST_DIR}/
+    else
+      continue
+    fi
+  done
+}
 
-create_alias() {
+software_alias() {
 
 	if [ $(command -v nvim) ]; then
 	 # echo "neovim is installed, create alias nv for neovim."
@@ -42,33 +44,18 @@ create_alias() {
 create_zshrc() {
   tee "$HOME/.zshrc" > /dev/null << 'EOF'
 # 加载环境配置
-if [[ "$(uname)" == "Linux" ]]; then
-  # Ensure history directory exists
-  [[ -d "${HOME}/.cache/zsh" ]] || mkdir -p "${HOME}/.cache/zsh"
-  # History file location
-  HISTFILE="${HOME}/.cache/zsh/history"
-  HISTSIZE=100000               # 当前 session 可保存的历史条数
-  SAVEHIST=100000               # 实际写入文件的历史条数
-
-  [[ -f $HOME/.config/zsh/linux.zsh ]] && source $HOME/.config/zsh/linux.zsh
-
-  # Default prompt
-  PS1="%n@%m: %1~ %# "
-elif [[ "$(uname)" == "Darwin" ]]; then
-  # Ensure history directory exists
-  [[ -d ${HOME}/Library/Caches/zsh ]] || mkdir -p ${HOME}/Library/Caches/zsh
-  # History file location
-  HISTFILE=${HOME}/Library/Caches/zsh/history
-  HISTSIZE=100000               # 当前 session 可保存的历史条数
-  SAVEHIST=100000               # 实际写入文件的历史条数
-
+if [[ "$(uname)" == "Darwin" ]]; then
   [[ -f $HOME/.config/zsh/macOS.zsh ]] && source $HOME/.config/zsh/macOS.zsh
+elif [[ "$(uname)" == "Linux" ]]; then
+  PS1="%n@%m: %1~ %# "                # Default prompt
+  [[ -f $HOME/.config/zsh/linux.zsh ]] && source $HOME/.config/zsh/linux.zsh
 fi
 EOF
 }
 
 main() {
-	create_alias
+	config_alias
+	software_alias
 	create_zshrc
 }
 
