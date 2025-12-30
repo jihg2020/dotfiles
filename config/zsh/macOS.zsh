@@ -35,12 +35,6 @@ if [[ "$(uname -m)" == "arm64" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# Starship
-if command starship -V &> /dev/null; then
-  eval "$(starship init zsh)"
-  export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-fi
-
 # autojump  -- installed by homebrew
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 

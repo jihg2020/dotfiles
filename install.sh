@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 set -u
-DST_DIR=${DST_DIR:-$HOME/.config}
-CUR_DIR=$(cd $(dirname $0); pwd)   # 获取当前执行的脚本文件所在的目录
+TARGET_DIR=${DST_DIR:-$HOME/.config}
+CURRENT_DIR=$(cd $(dirname $0); pwd)   # 获取当前执行的脚本文件所在的目录
 
 # 检查 $DEST_DIR 是否存在。
-if [[ ! -d "${DST_DIR}" ]]; then
+if [[ ! -d "${TARGET_DIR}" ]]; then
   set confirm
-  echo "install.sh: < ${DST_DIR} > not exist."
+  echo "install.sh: < ${TARGET_DIR} > not exist."
   echo "auto create it? [Y/n]?  (dafulf=Y) ";  read confirm
   if [[ ${confirm,,} = "y" ]] || [[ -z ${confirm} ]]; then
-    mkdir $DST_DIR
+    mkdir $TARGET_DIR
   else
-    echo "推出脚本"
+    echo "退出脚本"
     exit 1
   fi
   unset confirm
@@ -20,14 +20,12 @@ fi
 
 config_alias() {
   # 遍历当前文件，并在$HOME/.config下建立对应软连接
-  for name in `ls ${CUR_DIR}`; do
-    if [[ -d "${CUR_DIR}/${name}" && "$name" != "script" ]]; then
-      if [[ -d ${DST_DIR}/${name} ]]; then
-        mv $DST_DIR/${name} $DST_DIR/${name}.bak 
+  for name in `ls ${CURRENT_DIR}/config`; do
+    if [[ -d "${CURRENT_DIR}/config/${name}" ]]; then
+      if [[ -d ${TARGET_DIR}/${name} ]]; then
+        mv $TARGET_DIR/${name} $TARGET_DIR/${name}.bak 
       fi
-      ln -sf ${CUR_DIR}/${name} ${DST_DIR}/
-    else
-      continue
+      ln -sf ${CURRENT_DIR}/config/${name} ${TARGET_DIR}/
     fi
   done
 }
@@ -42,7 +40,7 @@ software_alias() {
 
 # 在用户家目录中创建.zshrc文件 
 create_zshrc() {
-  tee "$HOME/.zshrc" > /dev/null << 'EOF'
+  tee "${HOME}/.zshrc" > /dev/null << 'EOF'
 # 加载环境配置
 if [[ "$(uname)" == "Darwin" ]]; then
   [[ -f $HOME/.config/zsh/macOS.zsh ]] && source $HOME/.config/zsh/macOS.zsh

@@ -1,9 +1,13 @@
 #fish
-/fish/conf.d/
-/fish/fish_variables
+/config/fish/conf.d/
+/config/fish/fish_variables
 
 # yazi
-/yazi/plugins/
+config/yazi/plugins/
+
+# tmux
+config/tmux/plugins/
+
 # =====  =====
 # MacOS
 .DS_Store
