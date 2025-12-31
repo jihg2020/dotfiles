@@ -30,13 +30,6 @@ config_alias() {
   done
 }
 
-software_alias() {
-
-	if [ $(command -v nvim) ]; then
-	 # echo "neovim is installed, create alias nv for neovim."
-		 ln -sf $(command -v nvim) $(dirname "$(command -v nvim)")/nv
-	fi
-}
 
 # 在用户家目录中创建.zshrc文件 
 create_zshrc() {
@@ -53,7 +46,6 @@ EOF
 
 main() {
 	config_alias
-	software_alias
 	create_zshrc
 }
 
