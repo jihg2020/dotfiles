@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if command -v nvim 2& >/dev/null; then
+if command -v nvim 2&>/dev/null; then
   command nvim "$@"
 else
   command /usr/bin/vi "$@"
