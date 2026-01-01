@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 set -u
-TARGET_DIR=${DST_DIR:-$HOME/.config}
+TARGET=${TARGET:-$HOME/.config}
 CURRENT_DIR=$(cd $(dirname $0); pwd)   # 获取当前执行的脚本文件所在的目录
 
 # 检查 $DEST_DIR 是否存在。
-if [[ ! -d "${TARGET_DIR}" ]]; then
+if [[ ! -d "${TARGET}" ]]; then
   set confirm
-  echo "install.sh: < ${TARGET_DIR} > not exist."
+  echo "install.sh: < ${TARGET} > not exist."
   echo "auto create it? [Y/n]?  (dafulf=Y) ";  read confirm
   if [[ ${confirm,,} = "y" ]] || [[ -z ${confirm} ]]; then
-    mkdir $TARGET_DIR
+    mkdir $TARGET
   else
     echo "退出脚本"
     exit 1
@@ -22,10 +22,10 @@ config_alias() {
   # 遍历当前文件，并在$HOME/.config下建立对应软连接
   for name in `ls ${CURRENT_DIR}/config`; do
     if [[ -d "${CURRENT_DIR}/config/${name}" ]]; then
-      if [[ -d ${TARGET_DIR}/${name} ]]; then
-        mv $TARGET_DIR/${name} $TARGET_DIR/${name}.bak 
+      if [[ -d ${TARGET}/${name} ]]; then
+        mv $TARGET/${name} $TARGET/${name}.bak 
       fi
-      ln -sf ${CURRENT_DIR}/config/${name} ${TARGET_DIR}/
+      ln -sf ${CURRENT_DIR}/config/${name} ${TARGET}/
     fi
   done
 }
