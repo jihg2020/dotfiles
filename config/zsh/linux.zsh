@@ -27,9 +27,44 @@ fi
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh 2>/dev/null
 
+# System
+alias sudo="sudo -E"
+
+# python
+alias python="python3"
+alias pip="pip3"
+
+# lazygit
+if command -v lazygit &>/dev/null; then
+  alias lg="lazygit"
+fi
+
+# yazi
+if command -v yazi &>/dev/null; then
+  function yz() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+      cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+  }
+fi
+
+# autojump  -- installed by homebrew
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# zoxide 
+if command zoxide -V &>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+# Rust
+[ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
+
 
 # zoxide
-if command zoxide -V &> /dev/null; then
+if command zoxide -V &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
