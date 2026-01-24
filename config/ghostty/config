@@ -1,0 +1,38 @@
+# =====================================
+#    Ghostty configuration file
+# =====================================
+
+# Terminal Behavior Settings
+term = xterm-256color
+title = " "
+macos-titlebar-style = transparent
+
+# Theme & Color Settings
+theme = Dracula
+cursor-style = block
+cursor-style-blink = false
+
+# Font Settings
+font-family = Monaco
+font-size = 12
+
+# Font Fine-Tuning
+# 开启连字特性（如 != 变为 ）
+#font-feature = calt 
+#font-feature = liga
+
+
+# Window & Interface Settings
+window-height = 40
+window-width = 140
+background-opacity = 0.9
+background-blur-radius = 40
+window-padding-x = 5
+window-padding-y = 0
+window-padding-balance = true 
+
+# Set auto update
+auto-update = download
+auto-update-channel = stable
+
+# Custom keybindings
