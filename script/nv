@@ -3,5 +3,5 @@
 if command -v nvim &>/dev/null; then
   command nvim "$@"
 else
-  command /usr/bin/vi "$@"
+  command vi "$@"
 fi

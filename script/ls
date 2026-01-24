@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if command -v lsd 2&>/dev/null; then
+if command -v lsd &>/dev/null; then
   command lsd "$@"
 else
   command /bin/ls --color="auto" "$@"
