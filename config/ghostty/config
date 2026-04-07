@@ -23,13 +23,14 @@ font-size = 12
 
 
 # Window & Interface Settings
-window-height = 40
+background-opacity = 0.85
+background-blur = 40
 window-width = 140
-background-opacity = 0.9
-background-blur-radius = 40
-window-padding-x = 5
+window-height = 40
+window-padding-x = 8
 window-padding-y = 0
 window-padding-balance = true 
+window-save-state = always
 
 # Set auto update
 auto-update = download
