@@ -39,6 +39,12 @@ if command -v lazygit &>/dev/null; then
   alias lg="lazygit"
 fi
 
+# fzf
+if command -v fzf &>/dev/null; then
+  # Set up fzf key bindings and fuzzy completion
+  source <(fzf --zsh)
+fi
+
 # yazi
 if command -v yazi &>/dev/null; then
   function yz() {

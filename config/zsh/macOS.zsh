@@ -1,9 +1,13 @@
 # === Zsh configuration
 [[ -d ${HOME}/Library/Caches/zsh ]] || mkdir -p ${HOME}/Library/Caches/zsh
 export ZSH_CACHE_DIR="${HOME}/Library/Caches/zsh"
+export ZSH_COMPDUMP="${ZSH_CACHE_DIR}"
 HISTFILE="${ZSH_CACHE_DIR}/history"
 HISTSIZE=50000               # 当前 session 可保存的历史条数
 SAVEHIST=50000               # 实际写入文件的历史条数
+
+# 如果历史里已有相同命令，删除旧的只保留最新
+setopt HIST_IGNORE_ALL_DUPS
 
 # === ZimFW auto-install ===
 ZIM_HOME=${ZIM_HOME:-${HOME}/.local/state/zimfw}
@@ -36,6 +40,12 @@ if [[ "$(uname -m)" == "arm64" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# fzf
+# if command -v fzf &>/dev/null; then
+#   # Set up fzf key bindings and fuzzy completion
+#   source <(fzf --zsh --no-completion)
+# fi
+
 # lazygit
 if command -v lazygit &>/dev/null; then
   alias lg="lazygit"
@@ -64,8 +74,7 @@ fi
 # Rust
 [ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
 
-# openjdk
-if command java --version &>/dev/null;then
-  export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+# Orbstack
+if command -v orb &>/dev/null; then
+  source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 fi
-

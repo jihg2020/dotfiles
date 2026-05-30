@@ -27,6 +27,7 @@ zmodule magicmace	# Theme
 # === Completion
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
+zmodule Aloxaf/fzf-tab
 # Enables and configures smart and extensive tab completion, must be sourced
 # after all modules that add completion definitions.
 zmodule completion
